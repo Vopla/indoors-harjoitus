@@ -1,0 +1,138 @@
+body{
+  background-color: #282c34;
+}
+
+.DisplayForm{
+  background-color: #333538;
+  color:azure;
+  text-align: center;
+  border:none;
+  font-size: inherit;
+}
+
+
+.DisplayForm:hover{
+  text-decoration: underline;
+}
+
+.NewNote{
+  display:grid;
+  grid-template-areas: "Nimi Kuvaus Tunnit Luokitus Send";
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  height: 5em;
+  padding:0;
+  max-width: 120%;
+
+}
+
+.TheForm{
+  text-align: center;
+  border:outset;
+  font-size: inherit;
+}
+
+
+.Header-button{
+  background-color: #282c34;
+  color:azure;
+  text-align: center;
+  border:none;
+  font-size: inherit;
+}
+
+.Header-button:hover{
+  text-decoration: underline;
+}
+
+.Nimi{
+  grid-area: Nimi;
+  max-width: 30em;
+  padding-right: 1em;
+}
+
+.Projekti-nimi{
+  background-color: #333538;
+  color:azure;
+  text-align: center;
+  border:none;
+  font-size: inherit;
+  
+}
+
+.Projekti-nimi:hover{
+  text-decoration: underline;
+}
+
+.Kuvaus{
+  grid-area: Kuvaus;
+  max-width: 500px;
+  word-wrap: break-word;
+}
+
+.Tunnit{
+  grid-area: Tunnit;
+}
+
+.Luokitus{
+  grid-area: Luokitus;
+}
+
+.Send{
+  grid-area: Send;
+}
+
+.Poista{
+  grid-area:Poista;
+  align-self: center;
+  background-color: #333538;
+  color:azure;
+  text-align: center;
+  border:none;
+  font-size: inherit;
+}
+
+.Poista:hover{
+  text-decoration: underline;
+}
+.Header{
+  background-color: #333538;
+  font-size: medium;
+  display: flex;
+  justify-content: flex-start;
+  min-width: 200px;
+  min-height: 50px;
+  align-items: center;
+}
+
+.Header-items{
+  padding-left: 3em;
+}
+
+.Otsikot{
+  display: grid;
+  grid-template-columns: 0.4fr 1fr 3fr 1fr 1fr;
+  grid-template-areas: ". Nimi Kuvaus Tunnit Luokitus";
+  justify-items: center;
+}
+
+.Osio{
+  background-color: #333538;
+  list-style-type: none;
+  display: grid;
+  grid-template-areas: "Poista Nimi Kuvaus Tunnit Luokitus";
+  grid-template-columns:0.25fr 1fr 3fr 1fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  justify-items: center;
+  max-height: 200px;
+}
+
+.Osio-light{
+  background-color: #515458;
+}
+
+.App {
+  display: grid;
+  color: azure;
+  max-width: 1500px;
+}

@@ -1,0 +1,36 @@
+Tuntikirjaussovellus:
+
+-Ruby on Rails back-end, PostgreSQL-tietokanta
+-React front-end
+
+keskustelevat keskenään REST-rajapinnan kautta
+react->json->rubyonrails->sql->postgre
+
+
+Työprojekteja, joilla omia kirjauksia.
+frontendissä eri näkymiä, joissa tietoa suodatetaan näkymäkohtaisesti esim. päivämäärien mukaan
+reaaliaikainen, ei tarvitse päivittää sivua, että uudet tiedot näkyvät
+
+mobiiliystävällinen siisti käyttöliittymä
+
+bonuspisteitä autentikaation toteutuksesta Railsiin
+
+KIRJAA KÄYTTÄMÄSI TUNNIT
+
+12.12 2h työympäristön luominen ja ongelmien ratkaisu
+13.12 1h ruby on rails rest-apin luonti
+14.12 2h sain postgreSQL-tietokannan toimimaan ja Ruby On Railsin viemään tietoja kantaan
+15.12 4h kirjoitin osan rails-koodista uudelleen, koska aikaisempi toteutus sai minut sekoamaan helpommin,
+		 aloitin myös reactin kanssa puuhailun.
+16.12 2h React-sivu tulostaa nyt tietokantaan asetetut tiedot
+18.12 2h Kirjatut tunnit näkyvät nyt taulukkona, mobiiliystävällisyydessä on vielä puutteita
+19.12 4h Päivittelin sivua mobiiliystävällisemmämmäksi ja aloitin uusien tuntien kirjaamisen toteutuksen
+20.12 1h Muuttelin sivun ulkonäköä ja yritin saada uusien merkintöjen lisäyksen toimimaan
+21.12 2h Samaa mitä edellisenä päivänä, vaikeuksia saada oikeita tietoja menemään serverille. 
+22.12 2h Uusia tehtäviä on nyt mahdollista lisätä nettisivun kautta.
+24.12 2h Poistometodin luonti ja CSS-määritysten kanssa toimiminen
+25.12 3h Siistin koodia ja merkintöjen poistaminen toimii osin nyt.
+26.12 1h Ruby on Rails -työskentelyä tietokannan parissa
+27.12 2h Projekteja on nyt olemassa eikä vain työtehtäviä, työtehtävien näkyville saaminen on ongelmana tällä hetkellä.	
+28.12 2h Projekteilla on nyt työtehtäviä, frontendin kanssa työskentely jatkuu
+30.12 3h Backendissä ilmeni ongelmia täytesisällön luonnissa, mutta projektien poistaminen ja uusien luonti toimii osittain.
