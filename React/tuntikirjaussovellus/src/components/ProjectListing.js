@@ -22,12 +22,15 @@ export const Delete = (event, props) => {
 }
 
 export const ListProject = (props) =>{
-  
+
   return (
     <div>
           {props.data.map(item =>   
-            <ul key={item.id} className="Osio">
-              <button className="Projekti-nimi " onClick={() => ListJob({jobData:props.JobData, setJobData:props.setJobData,url:props.url, isloaded:props.isloaded, id:item.id, willFetch: props.jobView}) |props.setJobView(!props.jobView)}>{item.nimi}</button>
+            <ul key={item.id} className="Projekti-Osio">
+              <button className="Projekti-nimi " onClick={() => ListJob({
+                jobData:props.jobData,
+                id:item.id}) 
+                |props.setJobView(!props.JobView)}>{item.nimi}</button>
               <button className="Poista" onClick={e => Delete(e, {id:item.id, url:props.url, isloaded:props.isloaded})}>Poista projekti</button>
             </ul>
           )

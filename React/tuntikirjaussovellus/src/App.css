@@ -1,5 +1,17 @@
+@media only screen and (max-width:500px){
+  .Projektit-tehtavat{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 body{
   background-color: #282c34;
+}
+
+.Projektit-tehtavat{
+  display: flex;
+  flex-direction: row;
 }
 
 .DisplayForm{
@@ -9,7 +21,6 @@ body{
   border:none;
   font-size: inherit;
 }
-
 
 .DisplayForm:hover{
   text-decoration: underline;
@@ -30,10 +41,14 @@ body{
   text-align: center;
   border:outset;
   font-size: inherit;
+  max-width: 20em;
 }
 
 
 .Header-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   background-color: #282c34;
   color:azure;
   text-align: center;
@@ -51,17 +66,44 @@ body{
   padding-right: 1em;
 }
 
+.Projekti{
+  display: flex;
+  max-width: 20em;
+  min-width: 5em;
+}
+
 .Projekti-nimi{
   background-color: #333538;
   color:azure;
   text-align: center;
   border:none;
   font-size: inherit;
-  
+}
+
+.Projekti-otsikot{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.Projekti-Osio{
+  display: grid;
+  grid-template-areas: "Poista Nimi";
+  grid-template-columns:1fr 0.5fr;
+  grid-template-rows: 0.5fr 0.5fr;
+  justify-items: left;
+  background-color: #333538;
+  max-width: 20em;
 }
 
 .Projekti-nimi:hover{
   text-decoration: underline;
+}
+
+.Tehtava{
+  display: flex;
+  justify-content: flex-start;
+  padding-right: 3em;
 }
 
 .Kuvaus{

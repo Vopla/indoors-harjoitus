@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 luokitukset = %w[rento kiireellinen]
-kuvaukset = %w['Koodasin Rubylla pari tuntia' 'Koodasin Rubylla monta tuntia' 'Koodasin Rubylla muutaman tunnin']
+kuvaukset = %w[Koodasin\ Rubylla\ pari\ tuntia Koodasin\ Rubylla\ monta\ tuntia Koodasin\ Rubylla\ muutaman\ tunnin]
 
 for j in 1..3 do 
     jobs = Job.create({
