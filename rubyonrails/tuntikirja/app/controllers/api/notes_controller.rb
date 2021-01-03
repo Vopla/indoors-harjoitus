@@ -8,15 +8,15 @@ module Api
         end
 
         def show
-            @jobs = Job.find(params[:id])
+            @jobs = Job.find(params[:job_id])
             @note = @jobs.notes.find(params[:id])
             render json: {status: 'SUCCESS', message:'Merkintä haettu', data:@note},status: :ok
         end
 
         def create
-            @jobs = Job.find(params[:id])
+            @jobs = Job.find(params[:job_id])
             @note = @jobs.notes.new(note_permitted)
-            if note.save
+            if @note.save
                 render json: {status: 'SUCCESS', message:'Merkintä tallennettu', data:@note},status: :ok
             else
                 render json: {status: 'ERROR', message:'Merkintä ei tallentunut', data:@note.errors},status: :unprocessable_entity
@@ -24,7 +24,7 @@ module Api
         end
                 
         def destroy  
-            @jobs = Job.find(params[:id])
+            @jobs = Job.find(params[:job_id])
             @note = @jobs.notes.find(params[:id])
             @note.destroy
             if @note.destroy
@@ -35,7 +35,7 @@ module Api
         end
 
         def update
-            @jobs = Job.find(params[:id])
+            @jobs = Job.find(params[:job_id])
             @note = @jobs.notes.find(params[:id])
             if @note.update_attributes(note_permitted)
                 render json: {status: 'SUCCESS', message:'Merkintä muutettu', data:@note},status: :ok

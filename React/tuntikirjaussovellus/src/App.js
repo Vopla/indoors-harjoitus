@@ -12,6 +12,8 @@ const App = () => {
   const [isloaded, setLoaded] = useState(false)
   const [JobView, setJobView] = useState(false)
   const [JobData, setJobData] = useState([])
+  const [openProject, setOpenProject] = useState(1)
+  const [Submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
       fetch(url)
@@ -21,13 +23,13 @@ const App = () => {
   }, [isloaded])
 
   useEffect(() => {
-    data.map(project => 
-      fetch(url + project.id + "/notes/")
+      setSubmitting(false)
+      console.log("started a job fetch")
+      fetch(url + openProject + "/notes/")
       .then(response => response.json())
       .then(tehtava => setJobData(tehtava.data))
-      .finally(setLoaded(true)),
-      console.log("Loaded the Jobs")
-    )}, [data])
+      .finally(setLoaded(true))
+    },[openProject, Submitting])
 
   return (
 
@@ -35,37 +37,72 @@ const App = () => {
 
     <div className="Header">
       <Header text="Tuntikirjasovellus" className="Header-items"></Header>
-      <button className="Header-items DisplayForm" onClick={() => setFormVisible(!formVisible)}>Lisää uusi merkintä</button>
+      <button className="Header-items DisplayForm" onClick={() => setFormVisible(!formVisible)}>
+        {!formVisible ? 
+        <>
+          Lisää uusi merkintä
+        </>
+        :
+        <>
+          Piilota lomake
+        </>
+        }
+        </button>
     </div>
 
-    <div className="Projektit-tehtavat">
+    
       {formVisible &&
-        <Form url = {url} isloaded={setLoaded} JobView={JobView}></Form>      
+        <Form url = {url} 
+        isloaded={setLoaded} 
+        JobView={JobView} 
+        Submitting={setSubmitting}
+        currentProject={openProject}></Form>      
       }
 
+    <div className="Projektit-tehtavat">
       <div className="Projekti">
-        {!JobView &&
+        {(isloaded, !JobView) &&
           <div className="Projekti-otsikot">
             <Otsikko className="Projekti-nimi" text="Nimi"></Otsikko>
           </div>
         }
 
         {isloaded &&
-        <ListProject isloaded={setLoaded} setJobView={setJobView} JobView={JobView} data={data} url={url} jobData={JobData} setJobData={setJobData}></ListProject>
+          <ListProject
+            isloaded={setLoaded} 
+            setJobView={setJobView} 
+            JobView={JobView} 
+            data={data} 
+            url={url}
+            selectedProject={openProject} 
+            setSelectedProject={setOpenProject}>    
+          </ListProject>
         }
       </div>
 
-      <div className="Tehtava">
+      <div>
         {JobView &&
           <> 
             <div className="Otsikot">
+              {JobData.length !== 0 &&
+              <>
                 <Otsikko text="Nimi"></Otsikko>
                 <Otsikko text="Kuvaus"></Otsikko>
                 <Otsikko text="Tunnit"></Otsikko>
                 <Otsikko text="Luokitus"></Otsikko>
-                <button onClick={() => setJobView(!JobView)}>Takaisin</button>
+              </>
+              }
+              <button className="Back-button" onClick={() => setJobView(!JobView)}>Takaisin</button>
             </div>
-            <ListJob></ListJob>
+            <div className="Tehtava">
+              <ListJob 
+                jobData={JobData}
+                setJobData={setJobData}
+                showForm={setFormVisible}
+                formVisible={formVisible}
+                isloaded={setLoaded} 
+              ></ListJob>
+            </div>
           </>
         }
       </div>  

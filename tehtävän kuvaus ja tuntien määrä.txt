@@ -34,3 +34,6 @@ KIRJAA KÄYTTÄMÄSI TUNNIT
 27.12 2h Projekteja on nyt olemassa eikä vain työtehtäviä, työtehtävien näkyville saaminen on ongelmana tällä hetkellä.	
 28.12 2h Projekteilla on nyt työtehtäviä, frontendin kanssa työskentely jatkuu
 30.12 3h Backendissä ilmeni ongelmia täytesisällön luonnissa, mutta projektien poistaminen ja uusien luonti toimii osittain.
+2.1 3h Työtehtävien näyttämisessä on vielä vaikeuksia, mutta edistyin CSS-määritysten kanssa
+3.1 4h Työtehtävien lisäys projekteihin toimii sivun kautta. Uudet työtehtävät tulevat näkyvviin heti. Työtehtäviä ei ole
+	vielä mahdollista poistaa projekteista bugin vuoksi.

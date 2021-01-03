@@ -3,16 +3,18 @@
     display: flex;
     flex-direction: column;
   }
+  .Projekti{
+    flex-direction: column;
+  }
+  .TheForm{
+    flex-wrap: wrap;
+  }
 }
 
 body{
   background-color: #282c34;
 }
 
-.Projektit-tehtavat{
-  display: flex;
-  flex-direction: row;
-}
 
 .DisplayForm{
   background-color: #333538;
@@ -27,17 +29,36 @@ body{
 }
 
 .NewNote{
-  display:grid;
-  grid-template-areas: "Nimi Kuvaus Tunnit Luokitus Send";
-  grid-template-columns: 1fr 3fr 1fr 1fr;
-  grid-template-rows: auto auto auto auto;
+  display:flex;
   height: 5em;
-  padding:0;
-  max-width: 120%;
-
+  flex-direction: row;
+  max-height: 2.5em;
+  padding-bottom: 1em;
 }
 
 .TheForm{
+  display: flex;
+  text-align: center;
+  border:outset;
+  font-size: inherit;
+  max-width: 100%;
+  justify-content: stretch;
+}
+
+.TheForm-kuvaus{
+  display: flex;
+  text-align: center;
+  border:outset;
+  font-size: inherit;
+  width: 20em;
+}
+
+.TheForm-nimi{
+  margin-left: 2em;
+}
+
+.TheForm-submit{
+  display: flex;
   text-align: center;
   border:outset;
   font-size: inherit;
@@ -49,25 +70,41 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: #282c34;
+  background-color: #333538;
+  box-shadow: 3px 3px #212224;
   color:azure;
   text-align: center;
   border:none;
   font-size: inherit;
 }
 
+.Header{
+  background-color: #333538;
+  box-shadow: 3px 3px #212224;
+  margin-bottom: 1em;
+  font-size: medium;
+  display: flex;
+  justify-content: flex-start;
+  min-width: 200px;
+  min-height: 50px;
+}
+
+.Header-items{
+  padding-left: 3em;
+}
+
+
 .Header-button:hover{
   text-decoration: underline;
 }
 
-.Nimi{
-  grid-area: Nimi;
-  max-width: 30em;
-  padding-right: 1em;
+.Header-button:active{
+  box-shadow: none;
 }
 
 .Projekti{
   display: flex;
+  flex-direction: column;
   max-width: 20em;
   min-width: 5em;
 }
@@ -80,6 +117,14 @@ body{
   font-size: inherit;
 }
 
+.Projektit-tehtavat{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-left: 2em;
+}
+
+
 .Projekti-otsikot{
   display: flex;
   flex-direction: row;
@@ -87,12 +132,10 @@ body{
 }
 
 .Projekti-Osio{
-  display: grid;
-  grid-template-areas: "Poista Nimi";
-  grid-template-columns:1fr 0.5fr;
-  grid-template-rows: 0.5fr 0.5fr;
-  justify-items: left;
+  display: flex;
   background-color: #333538;
+  box-shadow: 3px 3px #212224;
+  height: 3em;
   max-width: 20em;
 }
 
@@ -102,79 +145,94 @@ body{
 
 .Tehtava{
   display: flex;
-  justify-content: flex-start;
-  padding-right: 3em;
+
+  margin-left: 2em;
+  background-color: #333538;
+  box-shadow: 3px 3px #212224;
 }
 
-.Kuvaus{
-  grid-area: Kuvaus;
-  max-width: 500px;
-  word-wrap: break-word;
-}
-
-.Tunnit{
-  grid-area: Tunnit;
-}
-
-.Luokitus{
-  grid-area: Luokitus;
-}
-
-.Send{
-  grid-area: Send;
+.NoJobs{
+  display: flex;
+  justify-content: center;
 }
 
 .Poista{
-  grid-area:Poista;
+  align-self: center;
+  background-color: #333538;
+  color:azure;
+  text-align: right;
+  border:none;
+  font-size: inherit;
+}
+
+.Projekti-Poista{
   align-self: center;
   background-color: #333538;
   color:azure;
   text-align: center;
   border:none;
   font-size: inherit;
+  border-right: outset;
 }
-
 .Poista:hover{
   text-decoration: underline;
 }
-.Header{
-  background-color: #333538;
-  font-size: medium;
-  display: flex;
-  justify-content: flex-start;
-  min-width: 200px;
-  min-height: 50px;
-  align-items: center;
-}
 
-.Header-items{
-  padding-left: 3em;
-}
 
 .Otsikot{
-  display: grid;
-  grid-template-columns: 0.4fr 1fr 3fr 1fr 1fr;
-  grid-template-areas: ". Nimi Kuvaus Tunnit Luokitus";
-  justify-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .Osio{
   background-color: #333538;
   list-style-type: none;
-  display: grid;
-  grid-template-areas: "Poista Nimi Kuvaus Tunnit Luokitus";
-  grid-template-columns:0.25fr 1fr 3fr 1fr 1fr;
-  grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
-  justify-items: center;
-  max-height: 200px;
+  display: flex;
+  justify-content:baseline;
+  max-height: 300px;
 }
 
 .Osio-light{
   background-color: #515458;
 }
 
+.Osio-item{
+  border-right: outset;
+  padding-right: 1em;
+  margin-left: 1em;
+}
+
+.Osio-poista{
+  margin-right: 1em;
+}
+
+.Back-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: #55595f;
+  box-shadow: 3px 3px #212224;
+  color:azure;
+  text-align: center;
+  border:none;
+  font-size: inherit;
+}
+
+.text-button{
+  background-color: #55595f;
+  box-shadow: 3px 3px #212224;
+  color:azure;
+  text-align: center;
+  border:none;
+  font-size: inherit;
+  margin-left: 1em;
+  margin-right: 2em;
+}
+
 .App {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   color: azure;
   max-width: 1500px;
 }
