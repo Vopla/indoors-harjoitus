@@ -37,3 +37,4 @@ KIRJAA KÄYTTÄMÄSI TUNNIT
 2.1 3h Työtehtävien näyttämisessä on vielä vaikeuksia, mutta edistyin CSS-määritysten kanssa
 3.1 4h Työtehtävien lisäys projekteihin toimii sivun kautta. Uudet työtehtävät tulevat näkyvviin heti. Työtehtäviä ei ole
 	vielä mahdollista poistaa projekteista bugin vuoksi.
+5.1 4h CSS-määrityksiä ja poistokoodin korjailua.

@@ -1,38 +1,75 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import {React, useEffect, useState} from 'react'
+import { OtsikkoJob, Separator } from './Headers'
 import Delete from './ProjectListing'
 
-export const ListJob = (props) => {
+export const ListJob = ({formVisible, showForm, openProject, submitting, url, isloaded, setJobView}) => {
+  const [jobData, setjobData] = useState([])
+
+  useEffect(() => { //hakee työtehtävät projekteille
+    fetch(url + openProject + "/notes/")
+    .then(response => response.json())
+    .then(tehtava => setjobData(tehtava.data))
+  },[openProject, url, isloaded])
+
   return(
-      <div>
-            {props.jobData.length === 0 ?
+      <>
+            {jobData.length === 0 &&
               <ul className="Osio">
                 <p className="NoJobs">Ei työtehtäviä. 
-                  <button className="text-button" onClick={() => props.showForm(!props.formVisible)}>
-                    {props.formVisible ?
+                  <button className="text-button" onClick={() => showForm(!formVisible)}>
+                    {formVisible ?
                       <>
-                      Piilota lomake
+                        Piilota lomake
                       </>
                       :
                       <>
-                      Lisää uusi
+                        Lisää uusi
                       </>
                     }
                     </button>
                 </p>
               </ul>
-            :
-            props.jobData.map(item =>   
-              <ul key={item.id} className="Osio">
-                <p className="Osio-item">{item.nimi}</p>
-                <p className="Osio-item">{item.kuvaus}</p>
-                <p className="Osio-item">{item.tunnit}</p>
-                <p className="Osio-item">{item.luokitus}</p>
-                <button className="Osio-poista Poista" onClick={e => Delete(e, {id:item.id, url:props.url, isloaded:props.isloaded})}>Poista tehtävä</button>
-              </ul>
+            } 
+
+            {jobData.map(item =>   
+              <ul key={item.id} className="Osio Osio-light">
+
+                <div className="Osio-item">
+                <OtsikkoJob text="Nimi:"></OtsikkoJob>
+                <p>{item.nimi}</p>
+                </div>
+                <Separator></Separator>
+                <div className="Osio-item">
+                <OtsikkoJob text="Kuvaus:"></OtsikkoJob>
+                <p>{item.kuvaus}</p>
+                </div>
+                <Separator></Separator>
+                <div className="Osio-item">
+                <OtsikkoJob text="Tunnit:"></OtsikkoJob>
+                <p>{item.tunnit}</p>
+                </div>
+                <Separator></Separator>
+                <div className="Osio-item">
+                <OtsikkoJob text="Luokitus:"></OtsikkoJob>
+                <p>{item.luokitus}</p>
+                </div>
+                <Separator></Separator>
+
+                <button className="Osio-item Osio-poista Poista Osio-light" onClick={e => Delete(e, {
+                  id:item.id, 
+                  url:url, 
+                  isloaded:isloaded, 
+                  submitting:submitting,
+                  setJobView:setJobView
+                })}
+                  >Poista tehtävä</button>
+                
+                <Separator></Separator>
+              </ul>               
             )
-          }
-      </div>
+            }
+      </>
   )
 }
 

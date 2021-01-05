@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-const Header = (props) => {
+export const Header = (props) => {
     return(
       <p className={props.className}>
         {props.text}
@@ -9,7 +9,7 @@ const Header = (props) => {
     )
   }
   
-const Otsikko = ({text}) => {
+export const Otsikko = ({text}) => {
     const styling = `Header-button ${text}`
     
     return(
@@ -17,4 +17,18 @@ const Otsikko = ({text}) => {
     )
 }
 
-export {Otsikko, Header}
+export const OtsikkoJob = ({text}) => {
+  const styling = `OtsikkoJob Osio-light ${text}`
+  
+  return(
+    <button className={styling}>{text}</button>
+  )
+}
+
+export const Separator = () => {
+  return(
+    <div className="Separator"></div>
+  )
+}
+
+export default {Otsikko, Header}

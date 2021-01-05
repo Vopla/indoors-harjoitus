@@ -10,14 +10,14 @@ luokitukset = %w[rento kiireellinen]
 kuvaukset = %w[Koodasin\ Rubylla\ pari\ tuntia Koodasin\ Rubylla\ monta\ tuntia Koodasin\ Rubylla\ muutaman\ tunnin]
 
 for j in 1..3 do 
-    jobs = Job.create({
+    jobs = Job.create!({
         nimi: "Projekti #{j}"
     })
 
     if jobs.persisted?
 
         for i in 1..5 do
-            merkinnat = Note.create({
+            merkinnat = Note.create!({
                 nimi: "Ruby-koodaus #{i}",
                 kuvaus: kuvaukset[rand(kuvaukset.length)],
                 tunnit: rand(1..5),

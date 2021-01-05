@@ -17,7 +17,7 @@ const SubmitJob = (event, props) => {
       
     })
     .then(response => console.log(`Status: ${response.status}`))
-    .then(props.Submitting(true))
+    .then(props.submitting = true)
     .catch(e => console.log(e))
     
     props.setFormValues({
@@ -46,33 +46,13 @@ const SubmitProject = (event, props) => {
     
   })
   .then(response => console.log(`Status: ${response.status}`))
-  .then(props.Submitting(true))
+  .then(props.submitting = true)
   .catch(e => console.log(e))
   
   props.setProjectValues({
     ...props.ProjectValues,
     nimi: "",
   })
-  props.isloaded(false)
-}
-
-export const Delete = (event, props) => {
-  event.preventDefault()
-  const url = props.url + props.id
-
-  fetch(url, {
-    method: 'DELETE',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      id: props.id
-    }),
-  })
-  .then(response => console.log(`Status: ${response.status}`))
-  .then(props.Submitting(true))
-  .catch(e => console.log(e))
-
   props.isloaded(false)
 }
 
@@ -92,9 +72,9 @@ export const Delete = (event, props) => {
     const url = props.url
   
     return (
-      props.JobView ?
+      props.jobView ?
       <div className="FormDiv">
-        <form className="NewNote" onSubmit={e => SubmitJob(e, {FormValues, setFormValues, url, isloaded:props.isloaded, Submitting:props.Submitting, job_id: props.currentProject})}>
+        <form className="NewNote" onSubmit={e => SubmitJob(e, {FormValues, setFormValues, url, isloaded:props.isloaded, submitting:props.submitting, job_id: props.currentProject})}>
           <input hidden type="number" value={props.currentProject} readOnly name="job_id"></input>
           <input className="TheForm TheForm-nimi" placeholder="Tehtävän nimi" type="text" name="name" value={FormValues.nimi} onChange={e => setFormValues({...FormValues, nimi: e.target.value})} required></input>
           <input className="TheForm-kuvaus" placeholder="Kuvaus" type="text" name="desc" value={FormValues.kuvaus} onChange={e => setFormValues({...FormValues, kuvaus: e.target.value })} required></input>
@@ -108,7 +88,7 @@ export const Delete = (event, props) => {
       </div>
       :
       <div className="FormDiv">
-      <form className="NewNote" onSubmit={e => SubmitProject(e, {ProjectValues, setProjectValues, url, isloaded:props.isloaded, Submitting:props.Submitting})}>
+      <form className="NewNote" onSubmit={e => SubmitProject(e, {ProjectValues, setProjectValues, url, isloaded:props.isloaded, submitting:props.submitting})}>
         <input className="TheForm TheForm-nimi" placeholder="Projektin nimi" type="text" name="name" value={ProjectValues.nimi} onChange={e => setProjectValues({...ProjectValues, nimi: e.target.value})} required></input>
         <input className="TheForm-submit" type="submit" value="Lähetä"></input>
       </form>

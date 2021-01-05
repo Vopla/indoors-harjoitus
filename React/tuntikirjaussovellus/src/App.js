@@ -1,35 +1,25 @@
 import './App.css';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import Form from './components/FormHandling'
 import {ListProject} from './components/ProjectListing'
-import {ListJob} from './components/JobListing'
+import ListJob from './components/JobListing'
 import {Otsikko, Header} from './components/Headers'
 
 const App = () => {
   const url = "http://127.0.0.1:3000/api/jobs/"
   const [formVisible, setFormVisible] = useState(false)
   const [data, setData] = useState([])
-  const [isloaded, setLoaded] = useState(false)
-  const [JobView, setJobView] = useState(false)
-  const [JobData, setJobData] = useState([])
-  const [openProject, setOpenProject] = useState(1)
-  const [Submitting, setSubmitting] = useState(false)
+  const [isloaded, setIsLoaded] = useState(false)
+  const [jobView, setJobView] = useState(false)
+  const [openProject, setOpenProject] = useState(0)
+  const submitting = useRef(false)
 
-  useEffect(() => {
+  useEffect(() => { //hakee projektit
       fetch(url)
       .then(response => response.json())
-      .then(projekti => setData(projekti.data))
-      console.log("Loaded the Projects")
+      .then(projekti => setData(projekti.data) | setOpenProject(projekti.data[0].id))
+      .finally(setIsLoaded(true))
   }, [isloaded])
-
-  useEffect(() => {
-      setSubmitting(false)
-      console.log("started a job fetch")
-      fetch(url + openProject + "/notes/")
-      .then(response => response.json())
-      .then(tehtava => setJobData(tehtava.data))
-      .finally(setLoaded(true))
-    },[openProject, Submitting])
 
   return (
 
@@ -50,28 +40,27 @@ const App = () => {
         </button>
     </div>
 
-    
       {formVisible &&
         <Form url = {url} 
-        isloaded={setLoaded} 
-        JobView={JobView} 
-        Submitting={setSubmitting}
+        isloaded={setIsLoaded} 
+        jobView={jobView} 
+        submitting={submitting}
         currentProject={openProject}></Form>      
       }
-
     <div className="Projektit-tehtavat">
       <div className="Projekti">
-        {(isloaded, !JobView) &&
+        {(isloaded) &&
           <div className="Projekti-otsikot">
-            <Otsikko className="Projekti-nimi" text="Nimi"></Otsikko>
+            <Otsikko className="Projekti-nimi" text="Projektin nimi"></Otsikko>
           </div>
         }
 
         {isloaded &&
           <ListProject
-            isloaded={setLoaded} 
-            setJobView={setJobView} 
-            JobView={JobView} 
+            isloaded={setIsLoaded}
+            setJobView={setJobView}
+            submitting={submitting} 
+            jobView={jobView} 
             data={data} 
             url={url}
             selectedProject={openProject} 
@@ -80,34 +69,27 @@ const App = () => {
         }
       </div>
 
-      <div>
-        {JobView &&
-          <> 
-            <div className="Otsikot">
-              {JobData.length !== 0 &&
-              <>
-                <Otsikko text="Nimi"></Otsikko>
-                <Otsikko text="Kuvaus"></Otsikko>
-                <Otsikko text="Tunnit"></Otsikko>
-                <Otsikko text="Luokitus"></Otsikko>
-              </>
-              }
-              <button className="Back-button" onClick={() => setJobView(!JobView)}>Takaisin</button>
-            </div>
-            <div className="Tehtava">
-              <ListJob 
-                jobData={JobData}
-                setJobData={setJobData}
-                showForm={setFormVisible}
-                formVisible={formVisible}
-                isloaded={setLoaded} 
-              ></ListJob>
-            </div>
+        {jobView &&
+          <>  
+          <div className="Tehtava">
+            <ListJob
+              url={url}
+              openProject={openProject}
+              submitting={submitting}
+              showForm={setFormVisible}
+              formVisible={formVisible}
+              isloaded={setIsLoaded}
+              setJobView={setJobView} 
+            ></ListJob>
+          <div className="Otsikot">
+            <button className="Back-button" onClick={() => setJobView(!jobView)}>Takaisin</button>
+          </div>
+          </div>
           </>
         }
+        </div>
       </div>  
-    </div>
-  </div>      
+   
   );
 }
 
