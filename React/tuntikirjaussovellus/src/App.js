@@ -11,13 +11,14 @@ const App = () => {
   const [data, setData] = useState([])
   const [isloaded, setIsLoaded] = useState(false)
   const [jobView, setJobView] = useState(false)
-  const [openProject, setOpenProject] = useState(0)
+  const [openProjectID, setOpenProjectID] = useState(0)
+  const [openProjectName, setOpenProjectName] = useState("")
   const submitting = useRef(false)
 
   useEffect(() => { //hakee projektit
       fetch(url)
       .then(response => response.json())
-      .then(projekti => setData(projekti.data) | setOpenProject(projekti.data[0].id))
+      .then(projekti => setData(projekti.data))
       .finally(setIsLoaded(true))
   }, [isloaded])
 
@@ -27,17 +28,11 @@ const App = () => {
 
     <div className="Header">
       <Header text="Tuntikirjasovellus" className="Header-items"></Header>
-      <button className="Header-items DisplayForm" onClick={() => setFormVisible(!formVisible)}>
-        {!formVisible ? 
-        <>
-          Lisää uusi merkintä
-        </>
-        :
-        <>
-          Piilota lomake
-        </>
-        }
-        </button>
+      {formVisible ? 
+      <button className="Header-items DisplayForm Osio-light" onClick={() => setFormVisible(!formVisible)}>Piilota lomake</button>
+      : 
+      <button className="Header-items DisplayForm" onClick={() => setFormVisible(!formVisible)}>Lisää uusi merkintä</button>
+      }
     </div>
 
       {formVisible &&
@@ -45,7 +40,8 @@ const App = () => {
         isloaded={setIsLoaded} 
         jobView={jobView} 
         submitting={submitting}
-        currentProject={openProject}></Form>      
+        currentProject={openProjectID}
+        currentProjectName={openProjectName}></Form>      
       }
     <div className="Projektit-tehtavat">
       <div className="Projekti">
@@ -63,8 +59,9 @@ const App = () => {
             jobView={jobView} 
             data={data} 
             url={url}
-            selectedProject={openProject} 
-            setSelectedProject={setOpenProject}>    
+            selectedProject={openProjectID} 
+            setSelectedProject={setOpenProjectID}
+            setSelectedProjectName={setOpenProjectName}>    
           </ListProject>
         }
       </div>
@@ -72,18 +69,20 @@ const App = () => {
         {jobView &&
           <>  
           <div className="Tehtava">
-            <ListJob
-              url={url}
-              openProject={openProject}
-              submitting={submitting}
-              showForm={setFormVisible}
-              formVisible={formVisible}
-              isloaded={setIsLoaded}
-              setJobView={setJobView} 
-            ></ListJob>
           <div className="Otsikot">
             <button className="Back-button" onClick={() => setJobView(!jobView)}>Takaisin</button>
           </div>
+            <ListJob
+              url={url}
+              openProjectID={openProjectID}
+              submitting={submitting}
+              showForm={setFormVisible}
+              formVisible={formVisible}
+              isloaded={isloaded}
+              setisloaded={setIsLoaded}
+              setJobView={setJobView}
+            ></ListJob>
+          
           </div>
           </>
         }

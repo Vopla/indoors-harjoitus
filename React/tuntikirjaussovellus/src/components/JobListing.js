@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import {React, useEffect, useState} from 'react'
 import { OtsikkoJob, Separator } from './Headers'
-import Delete from './ProjectListing'
+import Delete from './Deleting'
 
-export const ListJob = ({formVisible, showForm, openProject, submitting, url, isloaded, setJobView}) => {
+export const ListJob = ({formVisible, showForm, openProjectID, submitting, url, isloaded, setisloaded, setJobView}) => {
   const [jobData, setjobData] = useState([])
+  const jobUrl = url + openProjectID + "/notes/"
 
   useEffect(() => { //hakee työtehtävät projekteille
-    fetch(url + openProject + "/notes/")
+    fetch(jobUrl)
     .then(response => response.json())
     .then(tehtava => setjobData(tehtava.data))
-  },[openProject, url, isloaded])
+  },[jobUrl, isloaded])
 
   return(
       <>
@@ -58,14 +59,12 @@ export const ListJob = ({formVisible, showForm, openProject, submitting, url, is
 
                 <button className="Osio-item Osio-poista Poista Osio-light" onClick={e => Delete(e, {
                   id:item.id, 
-                  url:url, 
-                  isloaded:isloaded, 
+                  url:jobUrl, 
+                  isloaded:setisloaded, 
                   submitting:submitting,
                   setJobView:setJobView
                 })}
                   >Poista tehtävä</button>
-                
-                <Separator></Separator>
               </ul>               
             )
             }

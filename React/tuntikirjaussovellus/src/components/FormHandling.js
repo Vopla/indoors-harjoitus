@@ -75,21 +75,23 @@ const SubmitProject = (event, props) => {
       props.jobView ?
       <div className="FormDiv">
         <form className="NewNote" onSubmit={e => SubmitJob(e, {FormValues, setFormValues, url, isloaded:props.isloaded, submitting:props.submitting, job_id: props.currentProject})}>
+          <input className="TheForm TheForm-projektinimi" disabled value={props.currentProjectName}></input>
           <input hidden type="number" value={props.currentProject} readOnly name="job_id"></input>
           <input className="TheForm TheForm-nimi" placeholder="Tehtävän nimi" type="text" name="name" value={FormValues.nimi} onChange={e => setFormValues({...FormValues, nimi: e.target.value})} required></input>
           <input className="TheForm-kuvaus" placeholder="Kuvaus" type="text" name="desc" value={FormValues.kuvaus} onChange={e => setFormValues({...FormValues, kuvaus: e.target.value })} required></input>
-          <input className="TheForm" max="255" placeholder="Tunnit" type="number" name="hours" value={FormValues.tunnit} onChange={e => setFormValues({...FormValues, tunnit: e.target.value})} required></input>
-          <select value={FormValues.luokitus} onChange={e => setFormValues({...FormValues, luokitus: e.target.value})}>
+          <input className="TheForm TheForm-tunnit" max="255" placeholder="Tunnit" type="number" name="hours" value={FormValues.tunnit} onChange={e => setFormValues({...FormValues, tunnit: e.target.value})} required></input>
+          <select value={FormValues.luokitus} className="TheForm" onChange={e => setFormValues({...FormValues, luokitus: e.target.value})}>
+            <option value="">Ei luokitusta</option>
             <option value="kiireellinen">Kiireellinen</option>
             <option value="rento">Rento</option>
           </select>
-          <input className="TheForm" type="submit" onClick={() => setFormValues({...FormValues, job_id: props.currentProject})} value="Lähetä"></input>
+          <input className="TheForm TheForm-submit" type="submit" onClick={() => setFormValues({...FormValues, job_id: props.currentProject})} value="Lähetä"></input>
         </form>
       </div>
       :
       <div className="FormDiv">
       <form className="NewNote" onSubmit={e => SubmitProject(e, {ProjectValues, setProjectValues, url, isloaded:props.isloaded, submitting:props.submitting})}>
-        <input className="TheForm TheForm-nimi" placeholder="Projektin nimi" type="text" name="name" value={ProjectValues.nimi} onChange={e => setProjectValues({...ProjectValues, nimi: e.target.value})} required></input>
+        <input className="TheForm TheForm-projektinimi" placeholder="Projektin nimi" type="text" name="name" value={ProjectValues.nimi} onChange={e => setProjectValues({...ProjectValues, nimi: e.target.value})} required></input>
         <input className="TheForm-submit" type="submit" value="Lähetä"></input>
       </form>
     </div>
