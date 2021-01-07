@@ -17,7 +17,7 @@ const SubmitJob = (event, props) => {
       
     })
     .then(response => console.log(`Status: ${response.status}`))
-    .then(props.submitting = true)
+    .then(props.submitting.current = true)
     .catch(e => console.log(e))
     
     props.setFormValues({
@@ -46,7 +46,7 @@ const SubmitProject = (event, props) => {
     
   })
   .then(response => console.log(`Status: ${response.status}`))
-  .then(props.submitting = true)
+  .then(props.submitting.current = true)
   .catch(e => console.log(e))
   
   props.setProjectValues({
@@ -80,7 +80,7 @@ const SubmitProject = (event, props) => {
           <input className="TheForm TheForm-nimi" placeholder="Tehtävän nimi" type="text" name="name" value={FormValues.nimi} onChange={e => setFormValues({...FormValues, nimi: e.target.value})} required></input>
           <input className="TheForm-kuvaus" placeholder="Kuvaus" type="text" name="desc" value={FormValues.kuvaus} onChange={e => setFormValues({...FormValues, kuvaus: e.target.value })} required></input>
           <input className="TheForm TheForm-tunnit" max="255" placeholder="Tunnit" type="number" name="hours" value={FormValues.tunnit} onChange={e => setFormValues({...FormValues, tunnit: e.target.value})} required></input>
-          <select value={FormValues.luokitus} className="TheForm" onChange={e => setFormValues({...FormValues, luokitus: e.target.value})}>
+          <select value={FormValues.luokitus} className="TheForm TheForm-luokitus" onChange={e => setFormValues({...FormValues, luokitus: e.target.value})}>
             <option value="">Ei luokitusta</option>
             <option value="kiireellinen">Kiireellinen</option>
             <option value="rento">Rento</option>

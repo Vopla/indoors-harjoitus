@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import OrderBy from './OrderBy'
 
 export const Header = (props) => {
     return(
@@ -17,11 +18,11 @@ export const Otsikko = ({text}) => {
     )
 }
 
-export const OtsikkoJob = ({text}) => {
+export const OtsikkoJob = ({text, url, setJobData, setIsLoaded}) => {
   const styling = `OtsikkoJob Osio-light ${text}`
   
   return(
-    <button className={styling}>{text}</button>
+    <button className={styling} onClick={() => OrderBy({url:url, order_by:text, setJobData:setJobData, setIsLoaded:setIsLoaded})}>{text}</button>
   )
 }
 

@@ -3,15 +3,18 @@ import {React, useEffect, useState} from 'react'
 import { OtsikkoJob, Separator } from './Headers'
 import Delete from './Deleting'
 
-export const ListJob = ({formVisible, showForm, openProjectID, submitting, url, isloaded, setisloaded, setJobView}) => {
-  const [jobData, setjobData] = useState([])
+export const ListJob = ({formVisible, showForm, openProjectID, submitting, url, setisloaded, setJobView, jobView}) => {
+  const [jobData, setJobData] = useState([])
   const jobUrl = url + openProjectID + "/notes/"
 
   useEffect(() => { //hakee työtehtävät projekteille
+    jobView ?
     fetch(jobUrl)
     .then(response => response.json())
-    .then(tehtava => setjobData(tehtava.data))
-  },[jobUrl, isloaded])
+    .then(tehtava => setJobData(tehtava.data))
+    :
+    null
+  },[jobUrl, jobView, submitting])
 
   return(
       <>
@@ -37,22 +40,22 @@ export const ListJob = ({formVisible, showForm, openProjectID, submitting, url, 
               <ul key={item.id} className="Osio Osio-light">
 
                 <div className="Osio-item">
-                <OtsikkoJob text="Nimi:"></OtsikkoJob>
+                <OtsikkoJob text="Nimi" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
                 <p>{item.nimi}</p>
                 </div>
                 <Separator></Separator>
                 <div className="Osio-item">
-                <OtsikkoJob text="Kuvaus:"></OtsikkoJob>
+                <OtsikkoJob text="Kuvaus" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
                 <p>{item.kuvaus}</p>
                 </div>
                 <Separator></Separator>
                 <div className="Osio-item">
-                <OtsikkoJob text="Tunnit:"></OtsikkoJob>
+                <OtsikkoJob text="Tunnit" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
                 <p>{item.tunnit}</p>
                 </div>
                 <Separator></Separator>
                 <div className="Osio-item">
-                <OtsikkoJob text="Luokitus:"></OtsikkoJob>
+                <OtsikkoJob text="Luokitus" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
                 <p>{item.luokitus}</p>
                 </div>
                 <Separator></Separator>

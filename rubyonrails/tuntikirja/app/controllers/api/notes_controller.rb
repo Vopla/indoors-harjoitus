@@ -7,6 +7,12 @@ module Api
             
         end
 
+        def order_by
+            @jobs = Job.find(params[:job_id])
+            @notes = @jobs.notes.order("#{params[:order_by]} DESC")
+            render json: {status: 'SUCCESS', message:'Merkinnät haettu', data:@notes},status: :ok
+        end
+
         def show
             @jobs = Job.find(params[:job_id])
             @note = @jobs.notes.find(params[:id])
@@ -47,7 +53,7 @@ module Api
         private
 
         def note_permitted
-            params.permit(:nimi, :kuvaus, :tunnit, :luokitus, :job_id)
+            params.permit(:nimi, :kuvaus, :tunnit, :luokitus, :job_id, :order_by)
         end
     end
 end

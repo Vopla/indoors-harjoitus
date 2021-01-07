@@ -7,7 +7,7 @@ export const ListProject = (props) =>{
   return (
     <div>
           {props.data.map(item =>
-            props.selectedProject === item.id ?
+            props.selectedProject === item.id ? //valittu projekti
             <ul key={item.id} className="Projekti-Osio Osio-light">
               <button className="Projekti-Poista Osio-light" onClick={e => Delete(e, {
                   id:item.id, 

@@ -16,10 +16,13 @@ const App = () => {
   const submitting = useRef(false)
 
   useEffect(() => { //hakee projektit
+    !isloaded?
       fetch(url)
       .then(response => response.json())
       .then(projekti => setData(projekti.data))
       .finally(setIsLoaded(true))
+    :
+    null
   }, [isloaded])
 
   return (
@@ -80,6 +83,7 @@ const App = () => {
               formVisible={formVisible}
               isloaded={isloaded}
               setisloaded={setIsLoaded}
+              jobView={jobView}
               setJobView={setJobView}
             ></ListJob>
           

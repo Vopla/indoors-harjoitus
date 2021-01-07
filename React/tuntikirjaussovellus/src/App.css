@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-top: 3em;
   }
   
   .Projekti{
@@ -23,9 +24,30 @@
     border-bottom: outset;
   }
 
-
   .NewNote{
     flex-direction: column;
+    flex-wrap:wrap;
+    max-height: 6em;
+  }
+
+  .TheForm{
+    flex-direction: column;
+  }
+
+  .TheForm-nimi, .TheForm-kuvaus, .TheForm-tunnit, .TheForm-luokitus, .TheForm-submit{
+    flex-wrap: wrap;
+    flex: 5;
+  }
+}
+
+@media only screen and (max-width: 450px){
+  .FormDiv{
+    margin-bottom: 2em;
+    max-width: 20em;
+  }
+
+  .Projekti-otsikot{
+    margin-top: 2em;
   }
 }
 
@@ -53,6 +75,8 @@ body{
   flex-direction: row;
   max-height: 2.5em;
   padding-bottom: 1em;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .TheForm{
@@ -74,7 +98,6 @@ body{
 }
 
 .TheForm-projektinimi{
-  margin-left:2em;
   flex: 1;
 }
 
@@ -89,7 +112,6 @@ body{
   font-size: inherit;
   max-width: 20em;
   flex:1;
-  margin-right: 2em;
 }
 
 
@@ -122,10 +144,6 @@ body{
   padding-left: 2em;
 }
 
-
-.Header-button:hover{
-  text-decoration: underline;
-}
 
 .Header-button:active{
   box-shadow: none;
@@ -175,10 +193,6 @@ body{
   display: flex;
   flex-wrap: wrap;
   min-width: 162px;
-}
-
-.Projekti-nimi:hover{
-  text-decoration: underline;
 }
 
 .Tehtava{
@@ -235,6 +249,10 @@ body{
   color:azure;
   font-size: inherit;
   padding: 0;
+}
+
+.OtsikkoJob:hover{
+  text-decoration: underline;
 }
 
 .Osio{
