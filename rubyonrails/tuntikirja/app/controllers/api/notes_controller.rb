@@ -9,7 +9,7 @@ module Api
 
         def order_by
             @jobs = Job.find(params[:job_id])
-            @notes = @jobs.notes.order("#{params[:order_by]} DESC")
+            @notes = @jobs.notes.order("#{params[:order_by]} ASC")
             render json: {status: 'SUCCESS', message:'Merkinnät haettu', data:@notes},status: :ok
         end
 

@@ -21,22 +21,7 @@
   }
 
   .Osio-item{
-    border-bottom: outset;
-  }
-
-  .NewNote{
-    flex-direction: column;
-    flex-wrap:wrap;
-    max-height: 6em;
-  }
-
-  .TheForm{
-    flex-direction: column;
-  }
-
-  .TheForm-nimi, .TheForm-kuvaus, .TheForm-tunnit, .TheForm-luokitus, .TheForm-submit{
-    flex-wrap: wrap;
-    flex: 5;
+    
   }
 }
 
@@ -69,49 +54,40 @@ body{
   text-decoration: underline;
 }
 
-.NewNote{
-  display:flex;
-  height: 5em;
-  flex-direction: row;
-  max-height: 2.5em;
-  padding-bottom: 1em;
+.FormDiv{
+  display: flex;
+  max-width: 20em;
+  flex-direction: column;
   margin-left: 2em;
   margin-right: 2em;
 }
 
+.NewNote{
+  display:flex;
+  height: 100%;
+  padding-bottom: 1em;
+  flex-direction: column;
+}
+
 .TheForm{
   display: flex;
-  text-align: center;
+  text-align: left;
   border:outset;
   font-size: inherit;
   max-width: 100%;
+  height: 2em;
   justify-content: stretch;
-  flex:content;
-}
-
-.TheForm-kuvaus{
-  display: flex;
-  text-align: center;
-  border:outset;
-  font-size: inherit;
-  flex: 5;
-}
-
-.TheForm-projektinimi{
-  flex: 1;
-}
-
-.TheForm-tunnit{
-  flex:1;
 }
 
 .TheForm-submit{
   display: flex;
   text-align: center;
-  border:outset;
-  font-size: inherit;
-  max-width: 20em;
-  flex:1;
+  margin-top: 1.5em;
+}
+
+.TheForm-kuvaus{
+  height: 4em;
+  text-align: start;
 }
 
 
@@ -274,6 +250,7 @@ body{
   min-width: 8em;
   padding-right: 2em;
   border-right:outset;
+  border-bottom: outset;
   margin-left: 1em;
   flex-wrap: wrap;
 }
@@ -323,5 +300,5 @@ body{
   display: flex;
   flex-direction: column;
   color: azure;
-  max-width: 1500px;
+  max-width: 2000px;
 }

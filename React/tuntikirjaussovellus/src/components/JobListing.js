@@ -3,18 +3,19 @@ import {React, useEffect, useState} from 'react'
 import { OtsikkoJob, Separator } from './Headers'
 import Delete from './Deleting'
 
-export const ListJob = ({formVisible, showForm, openProjectID, submitting, url, setisloaded, setJobView, jobView}) => {
+export const ListJob = ({formVisible, showForm, openProjectID, url, setisloaded, setJobView, jobView}) => {
   const [jobData, setJobData] = useState([])
   const jobUrl = url + openProjectID + "/notes/"
 
   useEffect(() => { //hakee työtehtävät projekteille
     jobView ?
-    fetch(jobUrl)
-    .then(response => response.json())
-    .then(tehtava => setJobData(tehtava.data))
-    :
+      console.log("Haettiin työtehtäviä") |
+      fetch(jobUrl)
+      .then(response => response.json())
+      .then(tehtava => setJobData(tehtava.data))
+      :
     null
-  },[jobUrl, jobView, submitting])
+  },[jobUrl, jobView])
 
   return(
       <>
@@ -64,7 +65,6 @@ export const ListJob = ({formVisible, showForm, openProjectID, submitting, url, 
                   id:item.id, 
                   url:jobUrl, 
                   isloaded:setisloaded, 
-                  submitting:submitting,
                   setJobView:setJobView
                 })}
                   >Poista tehtävä</button>

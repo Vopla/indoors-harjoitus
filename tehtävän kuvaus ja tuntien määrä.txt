@@ -40,3 +40,5 @@ KIRJAA KÄYTTÄMÄSI TUNNIT
 5.1 4h CSS-määrityksiä ja poistokoodin korjailua.
 6.1 2h CSS-määritykset jatkuvat, uusien projektien ja työtehtävien lisääminen ja poistaminen toimivat nyt.
 7.1 2h Tehtäviä pystyy nyt järjestämään nimen, kuvauksen, tuntien tai luokituksen mukaan, jokin meni tosin rikki poistamisessa
+8.1 1h Poistamisen bugien korjaus jatkuu
+9.1 3h En saa poistamista toimimaan millään oikein.

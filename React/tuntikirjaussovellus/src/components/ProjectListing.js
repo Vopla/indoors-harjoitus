@@ -12,9 +12,7 @@ export const ListProject = (props) =>{
               <button className="Projekti-Poista Osio-light" onClick={e => Delete(e, {
                   id:item.id, 
                   url:props.url, 
-                  isloaded:props.isloaded, 
-                  submitting:props.submitting,
-                  setJobView:props.setJobView
+                  isloaded:props.isloaded
                 })}>
                 Poista projekti</button>
                 <div className="Projekti-nimi-div">
@@ -30,9 +28,7 @@ export const ListProject = (props) =>{
               <button className="Projekti-Poista" onClick={e => Delete(e, {
                   id:item.id, 
                   url:props.url, 
-                  isloaded:props.isloaded, 
-                  submitting:props.submitting,
-                  setJobView:props.setJobView
+                  isloaded:props.isloaded
                 })}>
                 Poista projekti</button>
                 <div className="Projekti-nimi-div">
@@ -42,8 +38,7 @@ export const ListProject = (props) =>{
                 | props.setSelectedProjectName(item.nimi)}}
                  >{item.nimi}</button>
                 </div>
-            </ul>
-            
+            </ul>           
           )
         }
     </div>

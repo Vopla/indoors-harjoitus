@@ -15,16 +15,6 @@ ActiveRecord::Schema.define(version: 2020_12_28_225423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "assignments", force: :cascade do |t|
-    t.string "nimi"
-    t.string "kuvaus"
-    t.integer "tunnit"
-    t.string "luokitus"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "project_id"
-  end
-
   create_table "jobs", force: :cascade do |t|
     t.string "nimi"
     t.datetime "created_at", precision: 6, null: false
@@ -39,12 +29,6 @@ ActiveRecord::Schema.define(version: 2020_12_28_225423) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "job_id"
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string "nimi"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

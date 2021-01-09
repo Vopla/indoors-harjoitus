@@ -1,29 +1,26 @@
 import './App.css';
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect} from 'react'
 import Form from './components/FormHandling'
 import {ListProject} from './components/ProjectListing'
 import ListJob from './components/JobListing'
 import {Otsikko, Header} from './components/Headers'
 
 const App = () => {
-  const url = "http://127.0.0.1:3000/api/jobs/"
-  const [formVisible, setFormVisible] = useState(false)
-  const [data, setData] = useState([])
-  const [isloaded, setIsLoaded] = useState(false)
-  const [jobView, setJobView] = useState(false)
-  const [openProjectID, setOpenProjectID] = useState(0)
-  const [openProjectName, setOpenProjectName] = useState("")
-  const submitting = useRef(false)
+  const url = "http://127.0.0.1:3000/api/jobs/" //mistä tiedot
+  const [formVisible, setFormVisible] = useState(false) //onko uusien projektien/työtehtävien lomake auki
+  const [data, setData] = useState([]) //Projektit
+  const [isloaded, setIsLoaded] = useState(false) //tarvitaanko uutta dataa palvelimelta
+  const [jobView, setJobView] = useState(false) //onko työtehtävänäkymä avoinna
+  const [openProjectID, setOpenProjectID] = useState(null) //valittu projekti
+  const [openProjectName, setOpenProjectName] = useState("") //valitun projektin nimi
 
   useEffect(() => { //hakee projektit
-    !isloaded?
+      console.log("Haettiin projekteja")
       fetch(url)
       .then(response => response.json())
       .then(projekti => setData(projekti.data))
       .finally(setIsLoaded(true))
-    :
-    null
-  }, [isloaded])
+  }, [isloaded, formVisible])
 
   return (
 
@@ -39,26 +36,31 @@ const App = () => {
     </div>
 
       {formVisible &&
-        <Form url = {url} 
+        <Form 
+        url = {url} 
         isloaded={setIsLoaded} 
         jobView={jobView} 
-        submitting={submitting}
         currentProject={openProjectID}
-        currentProjectName={openProjectName}></Form>      
+        currentProjectName={openProjectName}>
+        </Form>      
       }
     <div className="Projektit-tehtavat">
       <div className="Projekti">
-        {(isloaded) &&
+        {isloaded ?
           <div className="Projekti-otsikot">
             <Otsikko className="Projekti-nimi" text="Projektin nimi"></Otsikko>
           </div>
+          :
+          <div>
+            <Otsikko text={"Ladataan..."}></Otsikko>
+          </div>
+          
         }
 
         {isloaded &&
           <ListProject
             isloaded={setIsLoaded}
             setJobView={setJobView}
-            submitting={submitting} 
             jobView={jobView} 
             data={data} 
             url={url}
@@ -73,12 +75,11 @@ const App = () => {
           <>  
           <div className="Tehtava">
           <div className="Otsikot">
-            <button className="Back-button" onClick={() => setJobView(!jobView)}>Takaisin</button>
+            <button className="Back-button" onClick={() => setJobView(!jobView) | setOpenProjectID(null)}>Takaisin</button>
           </div>
             <ListJob
               url={url}
               openProjectID={openProjectID}
-              submitting={submitting}
               showForm={setFormVisible}
               formVisible={formVisible}
               isloaded={isloaded}

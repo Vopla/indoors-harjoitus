@@ -6,6 +6,5 @@ export const OrderBy = ({url, order_by, setJobData}) => {
     .then(tehtava => setJobData(tehtava.data))
     .catch(e => console.log(e))
 
-    
 }
 export default OrderBy

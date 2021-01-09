@@ -1,7 +1,6 @@
-export const Delete = (event, {url, id, submitting, isloaded}) => {
+export const Delete = (event, {url, id, isloaded}) => {
     event.preventDefault()
-    //setJobView(false)
-  
+    
     fetch(url + id, {
       method: 'DELETE',
       headers: {
@@ -12,10 +11,9 @@ export const Delete = (event, {url, id, submitting, isloaded}) => {
       }),
     })
     .then(response => console.log(`Status: ${response.status}`))
-    .then(submitting.current = true)
+    .then(isloaded(false))
     .catch(e => console.log(e))
-  
-    isloaded(false)
+
   }
 
 export default Delete
