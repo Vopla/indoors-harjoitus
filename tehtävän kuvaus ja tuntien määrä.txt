@@ -43,3 +43,5 @@ KIRJAA KÄYTTÄMÄSI TUNNIT
 8.1 1h Poistamisen bugien korjaus jatkuu
 9.1 3h Poistamisen toimii, mutta ei päivitä listoja ilman latausta	
 10.1 3h Samaa mitä eilen
+11.1 2h Poistamisen ongelmien ratkomista
+13.1 2h Samaa mitä toissapäivänä

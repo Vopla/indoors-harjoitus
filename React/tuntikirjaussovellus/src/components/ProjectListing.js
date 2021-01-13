@@ -9,12 +9,14 @@ export const ListProject = (props) =>{
           {props.data.map(item =>
             props.selectedProject === item.id ? //valittu projekti
             <ul key={item.id} className="Projekti-Osio Osio-light">
+              
               <button className="Projekti-Poista Osio-light" onClick={e => Delete(e, {
                   id:item.id, 
                   url:props.url, 
                   isloaded:props.isloaded
-                })}>
-                Poista projekti</button>
+                })}>Poista projekti</button>
+                
+
                 <div className="Projekti-nimi-div">
                 <button className="Projekti-nimi Osio-light" onClick={() => 
                 {props.setSelectedProject(item.id)
@@ -25,12 +27,14 @@ export const ListProject = (props) =>{
             </ul>
             :
             <ul key={item.id} className="Projekti-Osio">
+
               <button className="Projekti-Poista" onClick={e => Delete(e, {
                   id:item.id, 
                   url:props.url, 
                   isloaded:props.isloaded
                 })}>
                 Poista projekti</button>
+
                 <div className="Projekti-nimi-div">
                 <button className="Projekti-nimi" onClick={() => 
                 {props.setSelectedProject(item.id)
@@ -38,6 +42,7 @@ export const ListProject = (props) =>{
                 | props.setSelectedProjectName(item.nimi)}}
                  >{item.nimi}</button>
                 </div>
+
             </ul>           
           )
         }

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import {React, useEffect, useState} from 'react'
-import { OtsikkoJob, Separator } from './Headers'
-import Delete from './Deleting'
+import { Job } from './Job'
 
 export const ListJob = ({formVisible, showForm, openProjectID, url, setisloaded, setJobView, jobView}) => {
   const [jobData, setJobData] = useState([])
@@ -19,7 +18,7 @@ export const ListJob = ({formVisible, showForm, openProjectID, url, setisloaded,
 
   return(
       <>
-            {jobData.length === 0 &&
+            {jobData.length === 0 ?
               <ul className="Osio">
                 <p className="NoJobs">Ei työtehtäviä. 
                   <button className="text-button" onClick={() => showForm(!formVisible)}>
@@ -35,40 +34,23 @@ export const ListJob = ({formVisible, showForm, openProjectID, url, setisloaded,
                     </button>
                 </p>
               </ul>
-            } 
-
-            {jobData.map(item =>   
-              <ul key={item.id} className="Osio Osio-light">
-
-                <div className="Osio-item">
-                <OtsikkoJob text="Nimi" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
-                <p>{item.nimi}</p>
-                </div>
-                <Separator></Separator>
-                <div className="Osio-item">
-                <OtsikkoJob text="Kuvaus" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
-                <p>{item.kuvaus}</p>
-                </div>
-                <Separator></Separator>
-                <div className="Osio-item">
-                <OtsikkoJob text="Tunnit" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
-                <p>{item.tunnit}</p>
-                </div>
-                <Separator></Separator>
-                <div className="Osio-item">
-                <OtsikkoJob text="Luokitus" url={jobUrl} setJobData={setJobData}></OtsikkoJob>
-                <p>{item.luokitus}</p>
-                </div>
-                <Separator></Separator>
-
-                <button className="Osio-item Osio-poista Poista Osio-light" onClick={e => Delete(e, {
-                  id:item.id, 
-                  url:jobUrl, 
-                  isloaded:setisloaded, 
-                  setJobView:setJobView
-                })}
-                  >Poista tehtävä</button>
-              </ul>               
+            :            
+            jobData.map(item =>{
+              return(
+              <Job 
+                key={item.id} 
+                id={item.id}
+                nimi={item.nimi}
+                kuvaus={item.kuvaus}
+                tunnit={item.tunnit}
+                luokitus={item.luokitus}
+                jobUrl={jobUrl}
+                setisloaded={setisloaded}
+                setJobData={setJobData}
+                setJobView={setJobView}
+              ></Job>
+              )
+            }
             )
             }
       </>
