@@ -45,3 +45,4 @@ KIRJAA KÄYTTÄMÄSI TUNNIT
 10.1 3h Samaa mitä eilen
 11.1 2h Poistamisen ongelmien ratkomista
 13.1 2h Samaa mitä toissapäivänä
+18.1 4h Kokeilin erottaa työtehtävien listan ja yksittäisen työtehtävän toisistaan onnistumatta siinä
